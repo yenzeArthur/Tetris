@@ -1,7 +1,7 @@
 CC     = gcc
 CFLAGS = -Wall -Werror
-TARGET = first_game
-FILE   = first_game.c
+TARGET = tetris
+FILE   = tetris.c
 
 all: $(TARGET)
 	./$(TARGET)
