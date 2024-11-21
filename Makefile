@@ -1,13 +1,29 @@
+# Compiler and flags
 CC     = gcc
 CFLAGS = -Wall -Werror
-TARGET = tetris
-FILE   = tetris.c
 
+# Target executable name
+TARGET = tetris
+
+# Source files
+SRC    = tetris.c tetrimino_I.c tetrimino_J.c tetrimino_L.c tetrimino_O.c \
+         tetrimino_S.c tetrimino_T.c tetrimino_Z.c
+
+# Object files
+OBJ    = $(SRC:.c=.o)
+
+# Default rule to build and run
 all: $(TARGET)
 	./$(TARGET)
 
-$(TARGET): $(FILE)
-	$(CC) $(CFLAGS) $(FILE) -o $(TARGET)
+# Rule to link object files into the executable
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
 
+# Rule to compile each .c file into a .o file
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean rule to delete the executable and object files
 clean:
-	rm -f ./$(TARGET)
+	del /q $(OBJ) $(TARGET)
