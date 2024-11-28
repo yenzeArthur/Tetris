@@ -1,16 +1,34 @@
 #include "tetris.h"
 
-void place_tetrimino_J(int row, int col){
-    if(row >= 0 && row + 3 <= ROWS && col >= 1 && col <= COLS - 1){
-        // place the row part of "J"
-        for (int i = 0; i < 3; i++) {
-            if(grid[row + i][col] == '.'){
-                grid[row + i][col] = '#';
-            }
+void place_tetrimino_J(int row, int col, int *orientation) {
+    *orientation = (*orientation + 1) % 4;
+    clear_tetrimino(row, col);
+
+    if (*orientation == 0) { // Default J
+        if (row >= 0 && row + 2 < ROWS && col > 0 && col < COLS) {
+            place_vertical(row, col, 3);           
+            grid[row + 2][col - 1] = '#';          
         }
-        // place a point before the start position in line with the last # to make it look like J
-        if(grid[row + 2][col - 1] == '.'){
-            grid[row + 2][col - 1] = '#';
+    } 
+    
+    else if (*orientation == 1) { // J flipped up
+        if (row > 0 && row + 1 < ROWS && col >= 0 && col + 2 < COLS) {
+            place_horizontal(row, col, 3);         
+            grid[row - 1][col] = '#';             
+        }
+    } 
+    
+    else if (*orientation == 2) { // J rotated facing right
+        if (row >= 0 && row + 2 < ROWS && col >= 0 && col + 1 < COLS) {
+            place_vertical(row, col, 3);           
+            grid[row][col + 1] = '#';              
+        }
+    } 
+    
+    else if (*orientation == 3) { // J facing down
+        if (row >= 0 && row + 1 < ROWS && col >= 0 && col + 2 < COLS) {
+            place_horizontal(row, col, 3);        
+            grid[row + 1][col + 2] = '#';         
         }
     }
 }

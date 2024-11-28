@@ -1,11 +1,19 @@
+
 #include "tetris.h"
 
-void place_tetrimino_I(int row, int col) {
-    if(row >= 0 && row + 4 <= ROWS && col >= 0 && col <= COLS){
-        for (int i = 0; i < 4; i++) {
-            if(grid[i + row][col] == '.'){
-                grid[i + row][col] = '#';
-            }
+void place_tetrimino_I(int row, int col, int *orientation) {
+    // *orientation = (*orientation + 1) % 2;
+    clear_tetrimino(row, col);
+
+    if (*orientation == 0) { // Vertical
+        if (row >= 0 && row + 3 < ROWS && col >= 0 && col < COLS) {
+            place_vertical(row, col, 4);
+        }
+    } 
+    
+    else if (*orientation == 1) { // Horizontal
+        if (row >= 0 && row < ROWS && col >= 0 && col + 3 < COLS) {
+            place_horizontal(row, col, 4);
         }
     }
 }

@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror
 TARGET = tetris
 
 # Source files
-SRC    = tetris.c tetrimino_I.c tetrimino_J.c tetrimino_L.c tetrimino_O.c \
+SRC    = tetris.c display.c tetrimino_I.c tetrimino_J.c tetrimino_L.c tetrimino_O.c \
          tetrimino_S.c tetrimino_T.c tetrimino_Z.c
 
 # Object files
@@ -26,4 +26,4 @@ $(TARGET): $(OBJ)
 
 # Clean rule to delete the executable and object files
 clean:
-	del /q $(OBJ) $(TARGET)
+	del $(OBJ) $(TARGET)
