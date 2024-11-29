@@ -10,6 +10,3 @@ int main() {
     show_screen();
     return 0;
 }
-
-
-
