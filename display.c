@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include "tetris.h"
 
@@ -31,7 +30,7 @@ void clear_tetrimino(int row, int col) {
 
 void place_horizontal(int row, int col, int length) {
     for (int j = 0; j < length; j++) {
-        if (grid[row][col + j] == '.') {
+        if (col + j < COLS) {
             grid[row][col + j] = '#';
         }
     }
@@ -39,7 +38,7 @@ void place_horizontal(int row, int col, int length) {
 
 void place_vertical(int row, int col, int length) {
     for (int i = 0; i < length; i++) {
-        if (grid[row + i][col] == '.') {
+        if (row + i < ROWS) {
             grid[row + i][col] = '#';
         }
     }

@@ -1,7 +1,6 @@
 #include "tetris.h"
 
 void place_tetrimino_Z(int row, int col, int *orientation) {
-    *orientation = (*orientation + 1) % 2;
     clear_tetrimino(row, col);
 
     if (*orientation == 0) { // Z as we know it.
